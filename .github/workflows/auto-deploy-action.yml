@@ -19,9 +19,8 @@ jobs:
           password: ${{ secrets.PASSWORD }} #password login to server
           port: ${{ secrets.PORT }} #port of server - often port is 22
           script: | # run with multiple script
-            cd /home/
-            git clone git@github.com:trongcong/demo-auto-deploy.git
-            cd demo-auto-deploy
+            cd ~/server/test-cicd
+            cd test-cicd
             git pull
             printf "${{ secrets.ENV }}" > .env.production
             yarn
