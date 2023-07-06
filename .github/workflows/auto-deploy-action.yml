@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: executing remote ssh commands using password
-        uses: ./
+        uses: appleboy/ssh-action@master
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           host: ${{ secrets.HOST }} #hostname of server
