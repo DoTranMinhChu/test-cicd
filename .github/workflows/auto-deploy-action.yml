@@ -11,13 +11,11 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Write private key
-        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key.pem
       - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
+        uses: ./
         with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           host: ${{ secrets.HOST }} #hostname of server
-          username: ${{ secrets.USERNAME }} #username login to server
           password: ${{ secrets.PASSWORD }} #password login to server
           port: ${{ secrets.PORT }} #port of server - often port is 22
           script: | # run with multiple script
