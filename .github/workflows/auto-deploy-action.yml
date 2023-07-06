@@ -11,16 +11,18 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.5.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          host: ${{ secrets.HOST }} #hostname of server
-          password: ${{ secrets.PASSWORD }} #password login to server
-          port: ${{ secrets.PORT }} #port of server - often port is 22
-          script: | # run with multiple script
+
+      - name: Execute remote SSH commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }} # hostname of the server
+          port: ${{ secrets.PORT }} # port of the server (often port 22)
+          password: ${{ secrets.PASSWORD }} # password for SSH authentication
+          script: | # run with multiple scripts
             cd ~/server/test-cicd
-            cd test-cicd
             git pull
-            printf "${{ secrets.ENV }}" > .env.production
             npm i
