@@ -25,6 +25,4 @@ jobs:
             cd test-cicd
             git pull
             printf "${{ secrets.ENV }}" > .env.production
-            yarn
-            yarn build
-            pm2 start app-pm2.json
+            npm i
