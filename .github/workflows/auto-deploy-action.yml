@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     name: Deploy
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Set up SSH key
         uses: webfactory/ssh-agent@v0.5.0
